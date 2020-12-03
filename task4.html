@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        h1{
+            text-align: right;
+        }
+    </style>
+</head>
+<body style="background-color:#00677a;">
+
+    <h2>Bill Generation</h2>
+<div class="container-fluid">
+    <div class="container">
+        <div class="part1">
+            <fieldset>
+                <legend>Personal Information</legend>
+                Full Name: <input type="text" id="name"> <br/>
+
+                Your Email: <input type="text" id="email">
+            </fieldset>
+        </div>
+
+
+        <div class="part2">
+            <fieldset>
+                <legend>Your Orders</legend>
+                
+		Biscuit (Rs. 2): <input type="text" id="biscuit"> <br/>
+		Breakfast(Rs. 3): <input type="text" id="breakfast"> <br/>
+		Chocolate(Rs. 4): <input type="text" id="chocolate"> <br/>
+		Mithai(Rs. 5): <input type="text" id="mithai"> <br/>
+		Noodles (Rs. 6): <input type="text" id="noodles"> <br/>
+            </fieldset>
+        </div>
+        
+    </div>
+
+    <div class="container">
+        <fieldset>
+            <legend>Your Bill</legend>
+            <h3>Your Name:<span id="name2"></span></h3>
+            <h3>Email: <span id="email2"></span></h3>
+            <table border="1" >
+                <thead>
+                    <tr><th>Menu</th><th>Price</th><th>Quantity</th><th>Amout</th></tr>
+                </thead>
+                <tbody id="bill">
+                    <!-- <tr><td>Biscuit</td><td>Rs. 2</td><td>1</td><td>2x1 = 2</td></tr> -->
+                </tbody>
+
+                
+
+            </table>
+            </fieldset>
+            <h1>Total Amout: Rs. <span id="amount">0</span></h1>
+            
+    </div>
+</div>			
+<script>
+var Biscuit = 2, Breakfast = 3, Chocolate= 4, Mithai= 5,Noodles=6;
+var biscuit_q=0, breakfast_q=0, chocolate_q=0, mithai_q=0,noodles_q=0;
+var name = "", email="";
+var biscuitBill="",breakfastBill="",chocolateBill="",mithaiBill="",noodlesBill="";
+var total_amount=0;
+document.getElementById("name").addEventListener("keyup",function(){
+    // name = document.getElementById("name").value;
+    
+    document.getElementById("name2").innerHTML=this.value;
+});
+
+document.getElementById("email").addEventListener("keyup",function(){
+    // name = document.getElementById("name").value;
+    
+    document.getElementById("email2").innerHTML=this.value;
+});
+
+
+
+document.getElementById("biscuit").addEventListener("keyup",function(){
+if(this.value==""||this.value==0){
+    biscuitBill="";
+    biscuit_q=0;
+    showBill();
+}else{
+    biscuit_q=this.value;
+    biscuitBill="<tr><td>Biscuit</td><td>Rs. "+Biscuit+"</td><td>"+biscuit_q+"</td><td>"+Biscuit+"x"+biscuit_q+" = "+Biscuit*biscuit_q+"</td></tr>";
+    showBill();
+
+}
+});
+
+document.getElementById("breakfast").addEventListener("keyup",function(){
+if(this.value==""||this.value==0){
+    breakfastBill="";
+    breakfast_q=0;
+    showBill();
+
+}else{
+    breakfast_q=this.value;
+    breakfastBill="<tr><td>Breakfast</td><td>Rs. "+Breakfast+"</td><td>"+breakfast_q+"</td><td>"+Breakfast+"x"+breakfast_q+" = "+Breakfast*breakfast_q+"</td></tr>";
+    showBill();
+}
+});
+
+document.getElementById("chocolate").addEventListener("keyup",function(){
+if(this.value==""||this.value==0){
+    chocolateBill="";
+    chocolate_q=0;
+    showBill();
+
+}else{
+    chocolate_q=this.value;
+    chocolateBill="<tr><td>Chocolate</td><td>Rs. "+Chocolate+"</td><td>"+chocolate_q+"</td><td>"+Chocolate+"x"+chocolate_q+" = "+Chocolate*chocolate_q+"</td></tr>";
+    showBill();
+}
+});
+
+document.getElementById("mithai").addEventListener("keyup",function(){
+if(this.value==""||this.value==0){
+    mithaiBill="";
+    mithai_q=0;
+    showBill();
+
+}else{
+    mithai_q=this.value;
+    mithaiBill="<tr><td>Mithai</td><td>Rs. "+Mithai+"</td><td>"+mithai_q+"</td><td>"+Mithai+"x"+mithai_q+" = "+Mithai*mithai_q+"</td></tr>";
+    showBill();
+}
+});
+
+document.getElementById("noodles").addEventListener("keyup",function(){
+if(this.value==""||this.value==0){
+    noodlesBill="";
+    noodles_q=0;
+    showBill();
+
+}else{
+    noodles_q=this.value;
+    noodlesBill="<tr><td>Noodles</td><td>Rs. "+Noodles+"</td><td>"+noodles_q+"</td><td>"+Noodles+"x"+noodles_q+" = "+Noodles*noodles_q+"</td></tr>";
+    showBill();
+}
+});
+
+
+function showBill(){
+    document.getElementById("bill").innerHTML=biscuitBill+breakfastBill+chocolateBill+mithaiBill+noodlesBill; //table statement
+    document.getElementById("amount").innerHTML = Biscuit*biscuit_q+Breakfast*breakfast_q+Chocolate*chocolate_q+Mithai*mithai_q+Noodles*noodles_q; ; // total amount
+}
+
+
+</script>
+<a href="index.html">
+            <button type="button" class="btn btn-warning btn-lg">
+                <span class="badge badge-light" >Checkout</span>
+            </button>
+</body>
+</html>
